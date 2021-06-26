@@ -6,22 +6,35 @@ import React from "react";
 import LoginPageContainer from "../pages/LoginPage/containers/LoginPageContainer";
 import RegistrationPageContainer from "../pages/RegistrationPage/containers/RegistrationPageContainer";
 import ProductsPageContainer from "../pages/ProductsPage/containers/ProductsPageContainer";
+import PokemonsDetailsContainer from "../pages/PokemonDetails/containers/PokemonsDetailsContainer";
+
+import PrivateRoute from "./PrivateRoute";
+import CartPageContainers from "../pages/CartPage/containers/CartPageContainers";
 
 const Routes = () => {
   const { isAuth } = useSelector((state) => state.auth);
   return (
     <Switch>
-      <Route
+      <Route exact path={ROUTES.LOGIN_PAGE} component={LoginPageContainer} />
+      <PrivateRoute
         exact
-        path={
-          !isAuth ? ROUTES.LOGIN_PAGE : <Redirect to={ROUTES.PRODUCTS_PAGE} />
-        }
-        component={!isAuth ? LoginPageContainer : ProductsPageContainer}
+        path={ROUTES.PRODUCTS_PAGE}
+        component={ProductsPageContainer}
       />
       <Route
         exact
         path={ROUTES.REGISTRATION_PAGE}
         component={RegistrationPageContainer}
+      />
+      <PrivateRoute
+        exact
+        path={ROUTES.POKEMON_DETAILS_PAGE}
+        component={PokemonsDetailsContainer}
+      />
+      <PrivateRoute
+        exact
+        path={ROUTES.CART_PAGE}
+        component={CartPageContainers}
       />
     </Switch>
   );

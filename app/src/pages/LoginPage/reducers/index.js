@@ -18,7 +18,6 @@ const authReducer = handleActions(
     }),
     [actions.SIGN_IN_SUCCESS]: (state, { payload }) => {
       const { accessToken, ...accountInfo } = payload.response;
-      //console.log("Hello my friend");
       return {
         ...state,
         isLoading: false,
@@ -27,11 +26,13 @@ const authReducer = handleActions(
         accessToken,
       };
     },
-    [actions.SIGN_IN_FAIL]: (state, { payload }) => ({
-      ...state,
-      isLoading: false,
-      errors: payload.response,
-    }),
+    [actions.SIGN_IN_FAIL]: (state, { payload }) => {
+      return {
+        ...state,
+        isLoading: false,
+        errors: payload.response,
+      };
+    },
   },
   defaultState
 );

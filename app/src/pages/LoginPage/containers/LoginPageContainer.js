@@ -1,17 +1,44 @@
 import LoginLayout from "../components/LoginLayout";
 
-import { useDispatch } from "react-redux";
-import { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useCallback, useEffect, useMemo } from "react";
+import { useHistory } from "react-router-dom";
 import { SIGN_IN_REQUEST } from "../actions";
 import useForm from "../../../hooks/useForm";
 
+import {
+  validateEmail,
+  validatePassword,
+} from "../../RegistrationPage/validation";
+
+import { ROUTES } from "../../../rotes/routeNames";
+
 const LoginPageContainer = () => {
+  const dispatch = useDispatch();
+
+  const history = useHistory();
+
   const [loginValues, setLoginValues] = useForm({
     email: "",
     password: "",
   });
 
-  const dispatch = useDispatch();
+  const isLoginEmailValid = useMemo(
+    () => validateEmail(loginValues.email),
+    [loginValues.email]
+  );
+
+  const isLoginPasswordValid = useMemo(
+    () => validatePassword(loginValues.password),
+    [loginValues.password]
+  );
+
+  const isFormLoginValid = useMemo(
+    () => isLoginPasswordValid && isLoginEmailValid,
+    [isLoginEmailValid, isLoginPasswordValid]
+  );
+  const isLoadingValue = useSelector((state) => state.auth.isLoading);
+  const { isAuth, errors } = useSelector((state) => state.auth);
 
   const handleSubmit = useCallback(
     (event) => {
@@ -23,8 +50,20 @@ const LoginPageContainer = () => {
     [dispatch, loginValues]
   );
 
+  useEffect(() => {
+    if (isAuth) {
+      history.push(ROUTES.PRODUCTS_PAGE);
+    }
+  }, [isAuth, history]);
+
   return (
-    <LoginLayout setLoginValues={setLoginValues} handleSubmit={handleSubmit} />
+    <LoginLayout
+      errors={errors}
+      handleSubmit={handleSubmit}
+      isLoading={isLoadingValue}
+      isFormLoginValid={true}
+      setLoginValues={setLoginValues}
+    />
   );
 };
 

@@ -13,7 +13,6 @@ import {
 const { REQUEST_POSTFIX, SUCCESS_POSTFIX, FAIL_POSTFIX } = POSTFIXES;
 
 function* sendRequest(action) {
-  console.log("Worker Start");
   try {
     const сallMethod = apiCallsMapping(action);
     const response = yield call(сallMethod, action.payload);

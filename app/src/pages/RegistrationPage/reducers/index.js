@@ -4,7 +4,7 @@ import * as actions from "../actions";
 
 const defaultState = {
   isAuth: false,
-  useInfo: {},
+  userInfo: {},
   accessToken: null,
   isLoading: false,
   errors: null,
@@ -12,17 +12,29 @@ const defaultState = {
 
 const registrationReducer = handleActions(
   {
-    [actions.SIGN_UP_REQUEST]: (state) => ({
-      ...state,
-      isLoading: true,
-    }),
+    [actions.SIGN_UP_REQUEST]: (state, { payload }) => {
+      const { passwordRepeat, ...registrationValues } = payload;
+      console.log(registrationValues);
+      return {
+        ...state,
+        userInfo: registrationValues,
+        isLoading: true,
+      };
+    },
+
     [actions.SIGN_UP_SUCCESS]: (state, { payload }) => {
       const result = payload.response;
       console.log(result);
-      //alert(result.message);
       return {
         ...state,
         isLoading: false,
+      };
+    },
+    [actions.SIGN_UP_FAIL]: (state, { payload }) => {
+      return {
+        ...state,
+        isLoading: false,
+        errors: payload.response,
       };
     },
   },

@@ -26,6 +26,7 @@ const RegistrationPageContainer = () => {
       addressLine2: "",
     },
     gender: "",
+    passwordRepeat: "",
     password: "",
     phone: "",
   });
@@ -43,10 +44,11 @@ const RegistrationPageContainer = () => {
     [registrationValues.lastName]
   );
 
-  const isFormPasswordValid = useMemo(
-    () => validatePassword(registrationValues.password),
-    [registrationValues.password]
-  );
+  const isFormPasswordValid = useMemo(() => {
+    if (registrationValues.password === registrationValues.passwordRepeat) {
+      return validatePassword(registrationValues.password);
+    }
+  }, [registrationValues.password, registrationValues.passwordRepeat]);
 
   const isFormPhoneValid = useMemo(
     () => validatePhone(registrationValues.phone),
@@ -73,9 +75,9 @@ const RegistrationPageContainer = () => {
   const handleSubmit = useCallback(
     (event) => {
       event.preventDefault();
-
+      const { passwordRepeat, ...userData } = registrationValues;
       console.log(registrationValues);
-      dispatch(SIGN_UP_REQUEST(registrationValues));
+      dispatch(SIGN_UP_REQUEST(userData));
     },
     [dispatch, registrationValues]
   );

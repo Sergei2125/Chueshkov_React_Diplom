@@ -8,6 +8,7 @@ import Routes from "./rotes/Routes";
 
 import { configureStore } from "./store/configureStore";
 import persistStore from "redux-persist/es/persistStore";
+import MainLayout from "./commonComponents/Layouts/MainLayout";
 
 const store = configureStore();
 const persistor = persistStore(store);
@@ -17,7 +18,9 @@ ReactDOM.render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
-          <Routes />
+          <MainLayout>
+            <Routes />
+          </MainLayout>
         </BrowserRouter>
       </PersistGate>
     </Provider>
