@@ -5,7 +5,7 @@ export default (InitialValues) => {
 
   const handleFormChange = useCallback(
     (event) => {
-      const { value, name, type } = event.target;
+      const { value, name } = event.target;
       if (
         name === "country" ||
         name === "city" ||

@@ -6,15 +6,21 @@ import storage from "redux-persist/lib/storage";
 import auth from "../pages/LoginPage/reducers";
 import registration from "../pages/RegistrationPage/reducers";
 import pokemonsData from "../pages/ProductsPage/reducers";
-import pokemonDetailsData from "../pages/PokemonDetails/reducers";
+import pokemonDetailsData from "../pages/PokemonDetailsPage/reducers";
+import cartState from "../pages/CartPage/reducers";
+import addToCard from "../pages/ProductsPage/reducers";
+import ordersData from "../pages/UserPage/reducers";
 
 const loginPageBlacklist = createBlacklistFilter("auth", ["errors"]);
 
 const rootReducer = combineReducers({
+  addToCard,
+  cartState,
   auth,
   registration,
   pokemonsData,
   pokemonDetailsData,
+  ordersData,
 });
 
 const persistConfig = {

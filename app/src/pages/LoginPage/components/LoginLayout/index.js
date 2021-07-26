@@ -1,8 +1,10 @@
 import { TextField, Button, Box, CircularProgress } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import { ROUTES } from "../../../../rotes/routeNames";
 
 import styles from "./styles.module.scss";
+import ProductCard from "../../../../commonComponents/ProductCard";
 
 const LoginLayout = ({
   setLoginValues,
@@ -12,7 +14,7 @@ const LoginLayout = ({
   errors,
 }) => {
   return (
-    <Box>
+    <Box className={styles.wrapper}>
       <Box>
         {isLoading ? (
           <CircularProgress />
@@ -54,6 +56,14 @@ const LoginLayout = ({
       </Box>
     </Box>
   );
+};
+
+LoginLayout.propTypes = {
+  //errors
+  setLoginValues: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  isFormLoginValid: PropTypes.bool.isRequired,
 };
 
 export default LoginLayout;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { CircularProgress, Button } from "@material-ui/core";
 import ProductCard from "../../../../commonComponents/ProductCard";
 import Pagination from "@material-ui/lab/Pagination";
@@ -10,9 +11,10 @@ const ProductsLayout = ({
   itemsList,
   handlePageChange,
   handleGetPokemonDetail,
+  handleAddToCart,
 }) => {
   return (
-    <div className={styles.productPageWrapper}>
+    <div className={styles.pageWrapper}>
       {isLoading ? (
         <CircularProgress color="secondary" />
       ) : (
@@ -21,10 +23,8 @@ const ProductsLayout = ({
             <ProductCard
               handleGetPokemonDetail={() => handleGetPokemonDetail(item.id)}
               key={item.id}
-              itemName={item.name}
-              itemId={item.id}
-              itemImage={item.image}
-              itemPrice={item.price}
+              item={item}
+              handleAddToCart={() => handleAddToCart(item)}
             />
           ))}
         </div>
@@ -38,6 +38,14 @@ const ProductsLayout = ({
       />
     </div>
   );
+};
+
+ProductsLayout.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  itemsList: PropTypes.array.isRequired,
+  handlePageChange: PropTypes.func.isRequired,
+  handleGetPokemonDetail: PropTypes.func.isRequired,
+  handleAddToCart: PropTypes.func.isRequired,
 };
 
 export default ProductsLayout;

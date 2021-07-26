@@ -6,10 +6,11 @@ import React from "react";
 import LoginPageContainer from "../pages/LoginPage/containers/LoginPageContainer";
 import RegistrationPageContainer from "../pages/RegistrationPage/containers/RegistrationPageContainer";
 import ProductsPageContainer from "../pages/ProductsPage/containers/ProductsPageContainer";
-import PokemonsDetailsContainer from "../pages/PokemonDetails/containers/PokemonsDetailsContainer";
+import PokemonsDetailsPageContainer from "../pages/PokemonDetailsPage/containers/PokemonsDetailsPageContainer";
 
 import PrivateRoute from "./PrivateRoute";
 import CartPageContainers from "../pages/CartPage/containers/CartPageContainers";
+import UserPageContainers from "../pages/UserPage/containers/UserPageContainers";
 
 const Routes = () => {
   const { isAuth } = useSelector((state) => state.auth);
@@ -29,12 +30,17 @@ const Routes = () => {
       <PrivateRoute
         exact
         path={ROUTES.POKEMON_DETAILS_PAGE}
-        component={PokemonsDetailsContainer}
+        component={PokemonsDetailsPageContainer}
       />
       <PrivateRoute
         exact
         path={ROUTES.CART_PAGE}
         component={CartPageContainers}
+      />
+      <PrivateRoute
+        exact
+        path={ROUTES.USER_PAGE}
+        component={UserPageContainers}
       />
     </Switch>
   );

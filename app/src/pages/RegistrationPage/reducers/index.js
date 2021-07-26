@@ -8,19 +8,15 @@ const defaultState = {
   accessToken: null,
   isLoading: false,
   errors: null,
+  message: null,
 };
 
 const registrationReducer = handleActions(
   {
-    [actions.SIGN_UP_REQUEST]: (state, { payload }) => {
-      const { passwordRepeat, ...registrationValues } = payload;
-      console.log(registrationValues);
-      return {
-        ...state,
-        userInfo: registrationValues,
-        isLoading: true,
-      };
-    },
+    [actions.SIGN_UP_REQUEST]: (state, { payload }) => ({
+      ...state,
+      isLoading: true,
+    }),
 
     [actions.SIGN_UP_SUCCESS]: (state, { payload }) => {
       const result = payload.response;
@@ -28,6 +24,8 @@ const registrationReducer = handleActions(
       return {
         ...state,
         isLoading: false,
+        message: payload.response.message,
+        errors: null,
       };
     },
     [actions.SIGN_UP_FAIL]: (state, { payload }) => {

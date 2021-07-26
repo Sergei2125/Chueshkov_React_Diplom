@@ -1,0 +1,23 @@
+// .pokemonItemWrapper {
+//   border: 3px solid purple;
+//   border-radius: 10px;
+//   padding: 20px;
+//   margin: 20px;
+//   background-color: floralwhite;
+//   display: flex;
+//   justify-content: space-around;
+// }
+.card {
+  text-align: center;
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__image {
+    max-width: 100%;
+    height: 150px;
+    width: 150px;
+  }
+}

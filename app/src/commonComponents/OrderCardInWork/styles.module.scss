@@ -1,0 +1,21 @@
+.card {
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+  }
+  &__image {
+    height: 60px;
+    width: 60px;
+  }
+  &__name {
+    padding: 0 15px;
+  }
+}
+.orders {
+  padding-left: 30px;
+}

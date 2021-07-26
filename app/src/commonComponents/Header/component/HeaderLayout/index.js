@@ -4,34 +4,67 @@ import { REGUSER } from "../../constant/regUser";
 import { UNREGUSER } from "../../constant/unregUser";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import IconButton from "@material-ui/core/IconButton";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import Badge from "@material-ui/core/Badge";
+import { withStyles } from "@material-ui/core/styles";
 
-const HeaderLayout = ({ handleLogout }) => {
+import { Button, Box } from "@material-ui/core";
+
+import styles from "./styles.module.scss";
+
+const HeaderLayout = ({ handleLogout, numberOfOrder, handleGoToCart }) => {
   const { isAuth } = useSelector((state) => state.auth);
 
+  const StyledBadge = withStyles((theme) => ({
+    badge: {
+      right: -3,
+      top: 13,
+      border: `2px solid ${theme.palette.background.paper}`,
+      padding: "0 4px",
+    },
+  }))(Badge);
+
   return (
-    <div>
+    <Box>
       {isAuth ? (
-        <div>
+        <Box className={styles.header}>
           {Object.entries(REGUSER).map(([routeName, path]) => (
-            <Link to={path} key={routeName}>
-              <button>{routeName}</button>
+            <Link to={path} key={routeName} className={styles.header__link}>
+              <Button className={styles.header__button}>
+                {routeName}
+                {routeName === "CART" && (
+                  <StyledBadge
+                    badgeContent={numberOfOrder}
+                    color="secondary"
+                    className={styles.header__cart}
+                  >
+                    <ShoppingCartIcon />
+                  </StyledBadge>
+                )}
+              </Button>
             </Link>
           ))}
-          <button onClick={handleLogout}>LOGOUT</button>
-        </div>
+
+          <Button onClick={handleLogout} className={styles.header__butLogout}>
+            LOGOUT
+          </Button>
+        </Box>
       ) : (
-        <div>
+        <Box className={styles.header}>
           {Object.entries(UNREGUSER).map(([routeName, path]) => (
-            <Link to={path} key={routeName}>
-              <button>{routeName}</button>
+            <Link to={path} key={routeName} className={styles.header__link}>
+              <Button className={styles.header__button}>{routeName}</Button>
             </Link>
           ))}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 };
 
-HeaderLayout.propTypes = {};
+HeaderLayout.propTypes = {
+  handleLogout: PropTypes.func.isRequired,
+};
 
 export default HeaderLayout;

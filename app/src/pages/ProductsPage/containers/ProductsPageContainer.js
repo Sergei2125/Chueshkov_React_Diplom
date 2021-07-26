@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GET_POKEMONS_REQUEST } from "../actions";
-
+import { ADD_TO_CART_REQUEST } from "../../CartPage/actions";
+import { CART_STATE_REQUEST } from "../../CartPage/actions";
 import { ROUTES } from "../../../rotes/routeNames";
 
 import ProductsLayout from "../components/ProductsLayout";
 
 import { useHistory } from "react-router-dom";
-import { GET_POKEMON_DETAILS_REQUEST } from "../../PokemonDetails/actions";
 
 const ProductsPageContainer = () => {
   const dispatch = useDispatch();
@@ -21,6 +21,10 @@ const ProductsPageContainer = () => {
     dispatch(GET_POKEMONS_REQUEST());
   }, []);
 
+  useEffect(() => {
+    dispatch(CART_STATE_REQUEST());
+  }, []);
+
   const handlePageChange = useCallback((event, page) => {
     dispatch(GET_POKEMONS_REQUEST(page));
   }, []);
@@ -32,12 +36,17 @@ const ProductsPageContainer = () => {
     },
     [history]
   );
+  const handleAddToCart = useCallback((item) => {
+    item.quantity = 1;
+    dispatch(ADD_TO_CART_REQUEST(item));
+  }, []);
   return (
     <ProductsLayout
       isLoading={isLoading}
       itemsList={itemsList}
       handlePageChange={handlePageChange}
       handleGetPokemonDetail={handleGetPokemonDetail}
+      handleAddToCart={handleAddToCart}
     />
   );
 };

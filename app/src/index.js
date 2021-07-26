@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
 import Routes from "./rotes/Routes";
+import "./styles/index.css";
 
 import { configureStore } from "./store/configureStore";
 import persistStore from "redux-persist/es/persistStore";

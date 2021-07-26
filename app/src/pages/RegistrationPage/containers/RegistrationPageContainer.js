@@ -1,5 +1,6 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useMemo } from "react";
+import { useHistory } from "react-router-dom";
 
 import RegistrationLayout from "../components/RegistrationLayout";
 
@@ -13,8 +14,14 @@ import {
   validatePassword,
   validatePhone,
 } from "../validation";
+import { ROUTES } from "../../../rotes/routeNames";
 
 const RegistrationPageContainer = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const { errors, message } = useSelector((state) => state.registration);
+
   const [registrationValues, setRegistrationValues] = useForm({
     email: "",
     firstName: "",
@@ -25,7 +32,7 @@ const RegistrationPageContainer = () => {
       addressLine1: "",
       addressLine2: "",
     },
-    gender: "",
+    gender: "male",
     passwordRepeat: "",
     password: "",
     phone: "",
@@ -45,9 +52,10 @@ const RegistrationPageContainer = () => {
   );
 
   const isFormPasswordValid = useMemo(() => {
-    if (registrationValues.password === registrationValues.passwordRepeat) {
-      return validatePassword(registrationValues.password);
-    }
+    return (
+      validatePassword(registrationValues.password) &&
+      registrationValues.password === registrationValues.passwordRepeat
+    );
   }, [registrationValues.password, registrationValues.passwordRepeat]);
 
   const isFormPhoneValid = useMemo(
@@ -70,8 +78,6 @@ const RegistrationPageContainer = () => {
     ]
   );
 
-  const dispatch = useDispatch();
-
   const handleSubmit = useCallback(
     (event) => {
       event.preventDefault();
@@ -82,11 +88,19 @@ const RegistrationPageContainer = () => {
     [dispatch, registrationValues]
   );
 
+  const handleGoTOLoginPage = useCallback(() => {
+    history.push(ROUTES.LOGIN_PAGE);
+  }, []);
+
   return (
     <RegistrationLayout
+      handleGoTOLoginPage={handleGoTOLoginPage}
+      message={message}
+      errors={errors}
       handleSubmit={handleSubmit}
       setRegistrationValues={setRegistrationValues}
       isFormDataValid={isFormDataValid}
+      registrationValues={registrationValues}
     />
   );
 };

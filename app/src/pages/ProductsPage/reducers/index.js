@@ -13,7 +13,6 @@ const pokemonsDataReducer = handleActions(
   {
     [actions.GET_POKEMONS_REQUEST]: (state, { payload }) => ({
       ...state,
-      currentPage: payload,
       isLoading: true,
     }),
     [actions.GET_POKEMONS_SUCCESS]: (state, { payload }) => {

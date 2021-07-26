@@ -1,11 +1,58 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 import CartPageLayout from "../components/CartPageLayout";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  CART_STATE_REQUEST,
+  MAKE_ORDER_REQUEST,
+  REMOVE_ITEM_REQUEST,
+} from "../actions";
+import { useCallback } from "react";
+import { CHANGE_QUANTITY_ITEM_REQUEST } from "../actions";
 
 const CartPageContainers = (props) => {
-  return <CartPageLayout />;
-};
+  const dispatch = useDispatch();
+  const { cartData } = useSelector((state) => state.cartState);
 
-CartPageContainers.propTypes = {};
+  useEffect(() => {
+    dispatch(CART_STATE_REQUEST());
+  }, []);
+
+  const handleRemoveItemFromCart = useCallback((item) => {
+    dispatch(REMOVE_ITEM_REQUEST(item.id));
+  }, []);
+
+  const handleAddQuantityItem = useCallback((item) => {
+    const result = { id: item.id, quantity: item.quantity + 1 };
+    dispatch(CHANGE_QUANTITY_ITEM_REQUEST(result));
+  }, []);
+
+  const handleDecrementQuantityItem = useCallback((item) => {
+    if (item.quantity > 1) {
+      item.quantity = item.quantity - 1;
+    }
+    const result = {
+      id: item.id,
+      quantity: item.quantity,
+    };
+    dispatch(CHANGE_QUANTITY_ITEM_REQUEST(result));
+  }, []);
+
+  const handleMakeAnOrder = useCallback((cartData) => {
+    const { totalPrice, customerId, itemsList } = cartData;
+    dispatch(MAKE_ORDER_REQUEST({ totalPrice, customerId, itemsList }));
+  }, []);
+
+  return (
+    <CartPageLayout
+      cartData={cartData}
+      handleRemoveItemFromCart={handleRemoveItemFromCart}
+      handleAddQuantityItem={handleAddQuantityItem}
+      handleDecrementQuantityItem={handleDecrementQuantityItem}
+      handleMakeAnOrder={handleMakeAnOrder}
+    />
+  );
+};
 
 export default CartPageContainers;
