@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import RegistrationLayout from "../components/RegistrationLayout";
@@ -15,6 +15,8 @@ import {
   validatePhone,
 } from "../validation";
 import { ROUTES } from "../../../rotes/routeNames";
+import Popup from "../../../commonComponents/Popup";
+import useModalPopup from "../../../hooks/useModalPopup";
 
 const RegistrationPageContainer = () => {
   const dispatch = useDispatch();
@@ -92,16 +94,30 @@ const RegistrationPageContainer = () => {
     history.push(ROUTES.LOGIN_PAGE);
   }, []);
 
+  const [isModalOpen, handleOpen, handleClose] = useModalPopup();
+
+  useEffect(() => {
+    if (errors) handleOpen();
+  }, [errors]);
+
   return (
-    <RegistrationLayout
-      handleGoTOLoginPage={handleGoTOLoginPage}
-      message={message}
-      errors={errors}
-      handleSubmit={handleSubmit}
-      setRegistrationValues={setRegistrationValues}
-      isFormDataValid={isFormDataValid}
-      registrationValues={registrationValues}
-    />
+    <>
+      <RegistrationLayout
+        handleGoTOLoginPage={handleGoTOLoginPage}
+        message={message}
+        errors={errors}
+        handleSubmit={handleSubmit}
+        setRegistrationValues={setRegistrationValues}
+        isFormDataValid={isFormDataValid}
+        registrationValues={registrationValues}
+      />
+      <Popup
+        isOpen={isModalOpen}
+        handleOpen={handleOpen}
+        handleClose={handleClose}
+        message={errors}
+      />
+    </>
   );
 };
 

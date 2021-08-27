@@ -27,6 +27,7 @@ const authReducer = handleActions(
       };
     },
     [actions.SIGN_IN_FAIL]: (state, { payload }) => {
+      console.log(payload.response.message);
       return {
         ...state,
         isLoading: false,

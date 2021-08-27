@@ -6,8 +6,6 @@ import UserPageLayout from "../components/UserPageLayout";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { GET_ORDER_REQUEST } from "../actions";
-import Popup from "../../../commonComponents/Popup";
-import { useModalPopup } from "../../../hooks";
 
 const UserPageContainers = (props) => {
   const dispatch = useDispatch();
@@ -19,21 +17,8 @@ const UserPageContainers = (props) => {
     dispatch(GET_ORDER_REQUEST());
   }, []);
 
-  const [isModalOpen, handleOpen, handleClose] = useModalPopup();
-
   return (
-    <>
-      <UserPageLayout
-        isLoading={isLoading}
-        userInfo={userInfo}
-        orders={orders}
-      />
-      <Popup
-        isOpen={isModalOpen}
-        handleClose={handleClose}
-        handleOpen={handleOpen}
-      />
-    </>
+    <UserPageLayout isLoading={isLoading} userInfo={userInfo} orders={orders} />
   );
 };
 

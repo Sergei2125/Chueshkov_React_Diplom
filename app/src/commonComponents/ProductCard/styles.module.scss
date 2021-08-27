@@ -1,12 +1,9 @@
 .cardWrapper {
-  // border: 2px solid purple;
-  // border-radius: 10px;
   display: inline-block;
   margin: 5px;
   padding: 5px;
   width: 150px;
   text-align: center;
-  // background-color: floralwhite;
 }
 .card {
   &__name {
@@ -18,7 +15,7 @@
     height: 110px;
   }
   &__buttonCart {
-    padding-bottom: 10px;
+    padding-bottom: 10px !important;
     color: darkviolet !important;
   }
   &__buttonInfo {

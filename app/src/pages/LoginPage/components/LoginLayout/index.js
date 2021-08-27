@@ -12,6 +12,7 @@ const LoginLayout = ({
   isLoading,
   isFormLoginValid,
   errors,
+  handleOpen,
 }) => {
   return (
     <Box className={styles.wrapper}>
@@ -44,6 +45,7 @@ const LoginLayout = ({
                 type="submit"
                 variant="outlined"
                 disabled={!isFormLoginValid}
+                onClick={handleOpen}
               >
                 Login
               </Button>

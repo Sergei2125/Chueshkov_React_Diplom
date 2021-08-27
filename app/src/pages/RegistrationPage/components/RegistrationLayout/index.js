@@ -8,6 +8,7 @@ import {
   MenuItem,
   InputLabel,
   Select,
+  Typography,
 } from "@material-ui/core";
 
 import styles from "./styles.module.scss";
@@ -21,7 +22,6 @@ const RegistrationLayout = ({
   message,
   handleGoTOLoginPage,
 }) => {
-  console.log(isFormDataValid);
   return (
     <Box className={styles.wrapper}>
       {message ? (
@@ -37,39 +37,51 @@ const RegistrationLayout = ({
           <form onSubmit={handleSubmit}>
             <Box className={styles.boxWrapper}>
               <TextField
-                required
+                error={!registrationValues.email}
                 name="email"
                 onChange={setRegistrationValues}
                 label="Email"
                 type="email"
                 value={registrationValues.email}
                 variant="outlined"
+                helperText={
+                  !registrationValues.email && "Email is a required field."
+                }
               />
               <Box className={styles.boxWrapper}>
                 <TextField
-                  required
+                  error={!registrationValues.firstName}
                   name="firstName"
                   onChange={setRegistrationValues}
-                  label="FirstName"
+                  label="first Name"
                   type="firstName"
                   value={registrationValues.firstName}
                   variant="outlined"
+                  helperText={
+                    !registrationValues.firstName &&
+                    "First Name is a required field."
+                  }
                 />
               </Box>
-              <Box className={styles.boxWrapper}>
+              <Box className={styles.addressWrapper}>
                 <TextField
-                  required
+                  error={!registrationValues.lastName}
                   name="lastName"
                   onChange={setRegistrationValues}
-                  label="LastName"
+                  label="Last Name"
                   type="lastName"
                   value={registrationValues.lastName}
                   variant="outlined"
+                  helperText={
+                    !registrationValues.lastName &&
+                    "Last Name is a required field."
+                  }
                 />
               </Box>
               <Box>
                 <h2>Address</h2>
                 <TextField
+                  className={styles.textFieldWrapper}
                   name="country"
                   onChange={setRegistrationValues}
                   label="Country"
@@ -78,6 +90,7 @@ const RegistrationLayout = ({
                   variant="outlined"
                 />
                 <TextField
+                  className={styles.textFieldWrapper}
                   name="city"
                   onChange={setRegistrationValues}
                   label="City"
@@ -86,6 +99,7 @@ const RegistrationLayout = ({
                   variant="outlined"
                 />
                 <TextField
+                  className={styles.textFieldWrapper}
                   name="addressLine1"
                   onChange={setRegistrationValues}
                   label="AddressLine1"
@@ -94,6 +108,7 @@ const RegistrationLayout = ({
                   variant="outlined"
                 />
                 <TextField
+                  className={styles.textFieldWrapper}
                   name="addressLine2"
                   onChange={setRegistrationValues}
                   label="AddressLine2"
@@ -121,44 +136,51 @@ const RegistrationLayout = ({
 
               <Box className={styles.boxWrapper}>
                 <TextField
-                  required
+                  error={registrationValues.password.length < 8}
                   name="password"
                   onChange={setRegistrationValues}
                   label="Password"
                   type="password"
                   value={registrationValues.password}
                   variant="outlined"
+                  helperText={
+                    registrationValues.password.length < 8 && "Weak password."
+                  }
                 />
               </Box>
               <Box className={styles.boxWrapper}>
                 <TextField
-                  required
+                  error={
+                    registrationValues.password !==
+                    registrationValues.passwordRepeat
+                  }
                   name="passwordRepeat"
                   onChange={setRegistrationValues}
                   label="Repeat password"
                   type="password"
                   value={registrationValues.passwordRepeat}
                   variant="outlined"
+                  helperText={
+                    registrationValues.password !==
+                      registrationValues.passwordRepeat &&
+                    "Repeat password is wrong."
+                  }
                 />
               </Box>
               <Box className={styles.boxWrapper}>
                 <TextField
-                  required
+                  error={!registrationValues.phone}
                   name="phone"
                   onChange={setRegistrationValues}
                   label="Phone"
                   type="phone"
                   value={registrationValues.phone}
                   variant="outlined"
+                  helperText={
+                    !registrationValues.phone && "Phone is a required field."
+                  }
                 />
               </Box>
-              {errors && <div style={{ color: "red" }}>{errors}</div>}
-              {message && (
-                <div>
-                  <p style={{ color: "purple" }}>{message}</p>
-                  <button>SIGN IN</button>
-                </div>
-              )}
               <Button
                 type="submit"
                 variant="outlined"

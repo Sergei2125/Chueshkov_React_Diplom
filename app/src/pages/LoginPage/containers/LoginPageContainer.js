@@ -1,4 +1,7 @@
 import LoginLayout from "../components/LoginLayout";
+import Popup from "../../../commonComponents/Popup";
+import useModalPopup from "../../../hooks/useModalPopup";
+import { SIGN_OUT } from "../../../commonComponents/Header/actions";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect, useMemo } from "react";
@@ -56,14 +59,27 @@ const LoginPageContainer = () => {
     }
   }, [isAuth, history]);
 
+  const [isModalOpen, handleOpen, handleClose] = useModalPopup();
+
   return (
-    <LoginLayout
-      errors={errors}
-      handleSubmit={handleSubmit}
-      isLoading={isLoadingValue}
-      isFormLoginValid={true}
-      setLoginValues={setLoginValues}
-    />
+    <>
+      <LoginLayout
+        errors={errors}
+        handleSubmit={handleSubmit}
+        handleOpen={handleOpen}
+        isLoading={isLoadingValue}
+        isFormLoginValid={true}
+        setLoginValues={setLoginValues}
+      />
+      {!isAuth && !isLoadingValue && (
+        <Popup
+          isOpen={isModalOpen}
+          handleOpen={handleOpen}
+          handleClose={handleClose}
+          message={errors}
+        />
+      )}
+    </>
   );
 };
 

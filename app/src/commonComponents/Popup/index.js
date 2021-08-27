@@ -1,41 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import styles from "./styles.module.scss";
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  withStyles,
+} from "@material-ui/core";
 
-import { Backdrop, Fade, Modal } from "@material-ui/core";
+import styles from "./styles";
 
-const Popup = ({ isOpen, handleClose, handleOpen }) => {
+const Popup = ({ classes, isOpen, handleOpen, handleClose, message }) => {
   return (
-    <div>
-      <button type="button" onClick={handleOpen}>
-        react-transition-group
-      </button>
-      <Modal
-        className={styles.modalWrapper}
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={isOpen}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={isOpen}>
-          <div className={styles.textWrapper}>
-            <h2 id="transition-modal-title">Transition modalsdaaaaaaa</h2>
-            <p id="transition-modal-description">
-              react-transition-group animates me.
-            </p>
-          </div>
-        </Fade>
-      </Modal>
-    </div>
+    <>
+      <Dialog className={classes.dialog} open={isOpen} onClose={handleClose}>
+        <DialogTitle>{"Error:"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>{message}</DialogContentText>
+        </DialogContent>
+        <DialogActions className={classes.button}>
+          <Button onClick={handleClose} color="primary" variant="outlined">
+            Ok
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
   );
 };
 
 Popup.propTypes = {};
 
-export default Popup;
+export default withStyles(styles)(Popup);
