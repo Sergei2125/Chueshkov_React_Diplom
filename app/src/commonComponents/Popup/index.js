@@ -31,6 +31,11 @@ const Popup = ({ classes, isOpen, handleOpen, handleClose, message }) => {
   );
 };
 
-Popup.propTypes = {};
+Popup.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  handleOpen: PropTypes.func.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  message: PropTypes.string.isRequired,
+};
 
 export default withStyles(styles)(Popup);

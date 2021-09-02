@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { CircularProgress, Button } from "@material-ui/core";
+import { CircularProgress, Box } from "@material-ui/core";
 import PokemonCardDetails from "../../../../commonComponents/PokemonCardDetails";
 
 import styles from "./styles.module.scss";
 
 const PokemonDetailsPageLayout = ({ pokeInfo, isLoading, handleAddToCart }) => {
   return (
-    <div className={styles.pageWrapper}>
+    <Box className={styles.pageWrapper}>
       {isLoading ? (
         <CircularProgress />
       ) : (
@@ -16,7 +16,7 @@ const PokemonDetailsPageLayout = ({ pokeInfo, isLoading, handleAddToCart }) => {
           handleAddToCart={() => handleAddToCart(pokeInfo)}
         />
       )}
-    </div>
+    </Box>
   );
 };
 

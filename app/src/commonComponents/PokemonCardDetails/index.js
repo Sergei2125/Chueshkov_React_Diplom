@@ -1,21 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {
-  StylesProvider,
+  Box,
   Button,
   Accordion,
   Typography,
   AccordionDetails,
   AccordionSummary,
-  List,
   ListItem,
   ListItemIcon,
   ListItemText,
   CardMedia,
 } from "@material-ui/core";
 
-import InboxIcon from "@material-ui/icons/Inbox";
-import DraftsIcon from "@material-ui/icons/Drafts";
 import StarBorder from "@material-ui/icons/StarBorder";
 import Card from "@material-ui/core/Card";
 
@@ -30,12 +27,16 @@ const PokemonCardDetails = ({ pokeInfo, handleAddToCart }) => {
   return (
     <Card className={styles.card}>
       <CardContent className={styles.card__content}>
-        <Typography>
+        <Box>
           <Typography className={styles.card__name}>{name}</Typography>
-          <CardMedia className={styles.card__image} image={image} />
-          <Typography variant="p">Price: {price}</Typography>
-        </Typography>
-        <Typography>
+          <CardMedia
+            className={styles.card__image}
+            component="img"
+            image={image}
+          />
+          <Typography variant="body1">Price: {price}</Typography>
+        </Box>
+        <Box>
           <Button
             variant="contained"
             color="secondary"
@@ -43,7 +44,7 @@ const PokemonCardDetails = ({ pokeInfo, handleAddToCart }) => {
           >
             add to cart
           </Button>
-          <div>
+          <Box>
             {abilities?.map((ability) => (
               <Accordion key={ability.title}>
                 <AccordionSummary
@@ -58,8 +59,8 @@ const PokemonCardDetails = ({ pokeInfo, handleAddToCart }) => {
                 </AccordionDetails>
               </Accordion>
             ))}
-          </div>
-          <div>
+          </Box>
+          <Box>
             {stats?.map((stat) => (
               <ListItem key={stat.title}>
                 <ListItemIcon>
@@ -75,8 +76,8 @@ const PokemonCardDetails = ({ pokeInfo, handleAddToCart }) => {
               </ListItemIcon>
               <ListItemText primary="Inbox" />
             </ListItem>
-          </div>
-        </Typography>
+          </Box>
+        </Box>
       </CardContent>
     </Card>
   );

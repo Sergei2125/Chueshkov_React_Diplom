@@ -1,9 +1,14 @@
 .cardWrapper {
   display: inline-block;
-  margin: 5px;
+  margin: 5px 6px;
   padding: 5px;
   width: 150px;
   text-align: center;
+  box-shadow: 4px 4px 4px #bdbcbc;
+}
+.cardWrapper:hover {
+  box-shadow: 4px 4px 4px purple;
+  transition: ease 0.5s;
 }
 .card {
   &__name {

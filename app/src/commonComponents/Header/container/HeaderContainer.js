@@ -17,11 +17,11 @@ const HeaderContainer = () => {
 
   const handleLogout = useCallback(() => {
     dispatch(SIGN_OUT());
-  }, []);
+  }, [dispatch]);
 
   const handleGoToCart = useCallback(() => {
     history.push(REGUSER.CART);
-  }, []);
+  }, [history]);
   return (
     <HeaderLayout
       handleLogout={handleLogout}

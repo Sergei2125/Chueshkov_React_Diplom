@@ -1,5 +1,8 @@
 .wrapper {
   padding: 90px 20px 20px;
+  text-align: left;
+  width: 440px;
+  margin: 0 auto;
 }
 .messageWrapper {
   margin-top: 100px;
@@ -8,7 +11,16 @@
 .messageTitle {
   color: purple;
 }
-
+.title {
+  text-align: center;
+  color: purple;
+}
+.titleAddress {
+  text-align: center;
+  color: purple;
+  font-size: 32px;
+  margin: 10px 0;
+}
 .formWrapper {
   text-align: center;
 }
@@ -17,14 +29,18 @@
   color: purple;
   padding: 5px;
 }
-
+.MuiFormControl-root {
+}
 .boxWrapper {
-  margin: 10px 0;
+  margin: 10px 0px !important;
+}
+.inputLbl {
+  padding-bottom: 10px !important;
 }
 .formselect {
   color: red;
   min-width: 300px;
 }
 .textFieldWrapper {
-  margin: 0 10px 10px 0;
+  margin: 0 10px 10px 0 !important;
 }

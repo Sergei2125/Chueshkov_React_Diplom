@@ -25,7 +25,7 @@ export default (InitialValues) => {
 
   const handleReset = useCallback(() => {
     setFormValues(InitialValues);
-  }, []);
+  }, [InitialValues]);
 
   return [formValues, handleFormChange, handleReset];
 };

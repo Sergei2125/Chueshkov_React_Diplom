@@ -1,6 +1,5 @@
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { ROUTES } from "./routeNames";
-import { useSelector } from "react-redux";
 
 import React from "react";
 import LoginPageContainer from "../pages/LoginPage/containers/LoginPageContainer";
@@ -13,7 +12,6 @@ import CartPageContainers from "../pages/CartPage/containers/CartPageContainers"
 import UserPageContainers from "../pages/UserPage/containers/UserPageContainers";
 
 const Routes = () => {
-  const { isAuth } = useSelector((state) => state.auth);
   return (
     <Switch>
       <Route exact path={ROUTES.LOGIN_PAGE} component={LoginPageContainer} />

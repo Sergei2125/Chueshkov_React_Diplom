@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GET_POKEMONS_REQUEST } from "../actions";
 import { ADD_TO_CART_REQUEST } from "../../CartPage/actions";
@@ -18,28 +18,33 @@ const ProductsPageContainer = () => {
   );
 
   useEffect(() => {
-    dispatch(GET_POKEMONS_REQUEST());
-  }, []);
+    dispatch(GET_POKEMONS_REQUEST(currentPage));
+  }, [dispatch, currentPage]);
 
   useEffect(() => {
     dispatch(CART_STATE_REQUEST());
-  }, []);
+  }, [dispatch]);
 
-  const handlePageChange = useCallback((event, page) => {
-    dispatch(GET_POKEMONS_REQUEST(page));
-  }, []);
+  const handlePageChange = useCallback(
+    (event, page) => {
+      dispatch(GET_POKEMONS_REQUEST(page));
+    },
+    [dispatch]
+  );
 
   const handleGetPokemonDetail = useCallback(
     (id) => {
       history.push(`${ROUTES.PRODUCTS_PAGE}/${id}`);
-      console.log(id);
     },
     [history]
   );
-  const handleAddToCart = useCallback((item) => {
-    item.quantity = 1;
-    dispatch(ADD_TO_CART_REQUEST(item));
-  }, []);
+  const handleAddToCart = useCallback(
+    (item) => {
+      item.quantity = 1;
+      dispatch(ADD_TO_CART_REQUEST(item));
+    },
+    [dispatch]
+  );
   return (
     <ProductsLayout
       isLoading={isLoading}
@@ -47,6 +52,7 @@ const ProductsPageContainer = () => {
       handlePageChange={handlePageChange}
       handleGetPokemonDetail={handleGetPokemonDetail}
       handleAddToCart={handleAddToCart}
+      currentPage={currentPage}
     />
   );
 };

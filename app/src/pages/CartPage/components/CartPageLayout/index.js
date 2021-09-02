@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import PokemonCardinCart from "../../../../commonComponents/OrderItem";
-import { Button } from "@material-ui/core";
+import CartItem from "../../../../commonComponents/CartItem";
+import { Button, Box, Typography } from "@material-ui/core";
 
 import styles from "./styles.module.scss";
 
@@ -13,12 +13,16 @@ const CartPageLayout = ({
   handleMakeAnOrder,
 }) => {
   return (
-    <div className={styles.pageWrapper}>
-      <p>Total price: {cartData.totalPrice}</p>
-      <p>Quantity: {cartData.quantity}</p>
-      <div>
+    <Box className={styles.pageWrapper}>
+      <Typography className={styles.cartCharacters}>
+        Total price: {cartData.totalPrice}
+      </Typography>
+      <Typography className={styles.cartCharacters}>
+        Quantity: {cartData.quantity}
+      </Typography>
+      <Box>
         {cartData?.itemsList?.map((item) => (
-          <PokemonCardinCart
+          <CartItem
             key={item.id}
             item={item}
             handleRemoveItemFromCart={() => handleRemoveItemFromCart(item)}
@@ -28,17 +32,17 @@ const CartPageLayout = ({
             }
           />
         ))}
-      </div>
+      </Box>
 
       <Button
         onClick={() => handleMakeAnOrder(cartData)}
         variant="contained"
         className={styles.buttonOrder}
-        color="secondary"
+        color="primary"
       >
         Сделать заказ
       </Button>
-    </div>
+    </Box>
   );
 };
 

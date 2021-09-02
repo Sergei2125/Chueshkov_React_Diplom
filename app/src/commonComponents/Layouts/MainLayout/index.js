@@ -1,8 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-
-import { ROUTES } from "../../../rotes/routeNames";
 
 import HeaderContainer from "../../Header/container/HeaderContainer";
 

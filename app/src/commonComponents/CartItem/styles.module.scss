@@ -1,0 +1,51 @@
+.card {
+  margin: 15px 0;
+  box-shadow: 4px 4px 4px #bdbcbc !important;
+  align-items: left !important;
+
+  &__content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center !important;
+    flex-wrap: wrap;
+  }
+  &__image {
+    height: 120px;
+    width: 120px;
+  }
+  &__name {
+    font-weight: bold !important;
+  }
+
+  &__counter {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin: auto 0;
+    padding-top: 3px !important;
+  }
+  &__btn {
+    font-size: 20px !important;
+    font-weight: bold !important;
+  }
+  &__quantity {
+    padding: 10px 10px;
+    font-weight: bold !important;
+  }
+  &__buttondelete {
+  }
+  &__delete {
+    font-size: 50px !important;
+  }
+}
+.card:hover {
+  box-shadow: 4px 4px 4px purple !important;
+  transition: ease 0.5s;
+}
+
+@media (max-width: 840px) {
+  .card__content {
+  }
+  .card__name {
+  }
+}

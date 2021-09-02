@@ -8,7 +8,6 @@ import {
   MenuItem,
   InputLabel,
   Select,
-  Typography,
 } from "@material-ui/core";
 
 import styles from "./styles.module.scss";
@@ -33,7 +32,7 @@ const RegistrationLayout = ({
         </Box>
       ) : (
         <Box>
-          <h1>Registration page</h1>
+          <h1 className={styles.title}>Registration</h1>
           <form onSubmit={handleSubmit}>
             <Box className={styles.boxWrapper}>
               <TextField
@@ -79,7 +78,7 @@ const RegistrationLayout = ({
                 />
               </Box>
               <Box>
-                <h2>Address</h2>
+                <h2 className={styles.titleAddress}>Address</h2>
                 <TextField
                   className={styles.textFieldWrapper}
                   name="country"
@@ -119,7 +118,9 @@ const RegistrationLayout = ({
               </Box>
 
               <Box className={styles.boxWrapper}>
-                <InputLabel id="label">Gender</InputLabel>
+                <InputLabel id="label" className={styles.inputLbl}>
+                  Gender
+                </InputLabel>
                 <Select
                   labelId="label"
                   id="select"
@@ -135,24 +136,34 @@ const RegistrationLayout = ({
               </Box>
 
               <Box className={styles.boxWrapper}>
+                <InputLabel className={styles.inputLbl}>
+                  Password must be at least 8 characters
+                </InputLabel>
                 <TextField
-                  error={registrationValues.password.length < 8}
+                  error={
+                    registrationValues.password.length < 8 &&
+                    registrationValues.password.length > 0
+                  }
                   name="password"
+                  id="password2"
                   onChange={setRegistrationValues}
                   label="Password"
                   type="password"
                   value={registrationValues.password}
                   variant="outlined"
                   helperText={
-                    registrationValues.password.length < 8 && "Weak password."
+                    registrationValues.password.length < 8 &&
+                    registrationValues.password.length > 0 &&
+                    "Weak password."
                   }
                 />
               </Box>
               <Box className={styles.boxWrapper}>
                 <TextField
                   error={
+                    registrationValues.passwordRepeat.length > 0 &&
                     registrationValues.password !==
-                    registrationValues.passwordRepeat
+                      registrationValues.passwordRepeat
                   }
                   name="passwordRepeat"
                   onChange={setRegistrationValues}
@@ -161,6 +172,7 @@ const RegistrationLayout = ({
                   value={registrationValues.passwordRepeat}
                   variant="outlined"
                   helperText={
+                    registrationValues.passwordRepeat.length > 0 &&
                     registrationValues.password !==
                       registrationValues.passwordRepeat &&
                     "Repeat password is wrong."

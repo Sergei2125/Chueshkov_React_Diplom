@@ -33,7 +33,7 @@ const apiCallsMapping = (action) => {
   };
 
   if (!mapping.hasOwnProperty(action.type)) {
-    throw "Not mapped action";
+    throw new SyntaxError("Not mapped action");
   }
 
   //console.log("FOUND FUNC TO CALL", mapping[action.type]);

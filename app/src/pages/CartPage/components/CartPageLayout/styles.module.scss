@@ -1,7 +1,31 @@
 .pageWrapper {
-  padding: 90px 280px 30px;
+  width: 1000px;
+  padding: 90px 20px 30px;
+  margin: 0 auto;
+  text-align: right;
+}
+.cartCharacters {
+  display: inline-block;
+  padding: 10px 10px !important;
+  margin: 10px 10px 10px 0 !important;
+  text-transform: uppercase;
+  font-weight: bold !important;
+  color: #1a3b9e;
+  border: 1px solid #bdbcbc;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px #bdbcbc;
+}
+.buttonOrder {
+  margin-right: 10px;
 }
 
-.buttonOrder {
-  background-color: Indigo;
+@media (max-width: 1040px) {
+  .pageWrapper {
+    width: 800px;
+  }
+}
+@media (max-width: 840px) {
+  .pageWrapper {
+    width: 600px;
+  }
 }

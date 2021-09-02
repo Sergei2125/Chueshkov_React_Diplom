@@ -92,13 +92,13 @@ const RegistrationPageContainer = () => {
 
   const handleGoTOLoginPage = useCallback(() => {
     history.push(ROUTES.LOGIN_PAGE);
-  }, []);
+  }, [history]);
 
   const [isModalOpen, handleOpen, handleClose] = useModalPopup();
 
   useEffect(() => {
     if (errors) handleOpen();
-  }, [errors]);
+  }, [errors, handleOpen]);
 
   return (
     <>

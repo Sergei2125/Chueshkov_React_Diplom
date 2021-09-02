@@ -31,7 +31,7 @@ const ProductCard = ({
         <Button
           size="small"
           color="primary"
-          variant="outlined"
+          variant="contained"
           className={styles.card__buttonInfo}
           onClick={handleGetPokemonDetail}
         >

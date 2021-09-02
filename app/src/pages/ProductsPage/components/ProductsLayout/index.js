@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { CircularProgress, Button } from "@material-ui/core";
+import { CircularProgress } from "@material-ui/core";
 import ProductCard from "../../../../commonComponents/ProductCard";
 import Pagination from "@material-ui/lab/Pagination";
 
@@ -12,9 +12,10 @@ const ProductsLayout = ({
   handlePageChange,
   handleGetPokemonDetail,
   handleAddToCart,
+  currentPage,
 }) => {
   return (
-    <div className={styles.pageWrapper}>
+    <div className={styles.container}>
       {isLoading ? (
         <CircularProgress color="secondary" />
       ) : (
@@ -32,6 +33,7 @@ const ProductsLayout = ({
       <Pagination
         className={styles.pagination}
         onChange={handlePageChange}
+        page={currentPage}
         count={30}
         variant="outlined"
         color="secondary"

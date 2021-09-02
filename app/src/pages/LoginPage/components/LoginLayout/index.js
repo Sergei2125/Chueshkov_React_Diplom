@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { ROUTES } from "../../../../rotes/routeNames";
 
 import styles from "./styles.module.scss";
-import ProductCard from "../../../../commonComponents/ProductCard";
 
 const LoginLayout = ({
   setLoginValues,

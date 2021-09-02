@@ -16,22 +16,43 @@
     color: white !important;
     font-size: 16px !important;
     font-weight: 300 !important;
-    padding: 10px !important;
+    padding: 5px !important;
+    margin: 5px !important;
   }
   &__button:hover {
     background-color: DarkViolet !important;
+    transition: ease 0.5s;
   }
   &__cart {
     margin: 0 20px;
   }
-  &__butLogout {
+  &__btnLogout {
     color: white !important;
     font-size: 16px !important;
     font-weight: 300 !important;
-    padding: 11px !important;
+    padding: 5px !important;
+    margin: 5px !important;
     margin-left: 50px !important;
   }
-  &__butLogout:hover {
+  &__btnLogout:hover {
     background-color: DarkViolet !important;
+    transition: ease 0.5s;
+  }
+}
+
+@media (max-width: 970px) {
+  .header__btnLogout {
+    margin: 0 !important;
+  }
+}
+@media (max-width: 599px) {
+  .header {
+    top: 0;
+  }
+  .header__btnLogout {
+    margin: 0 30px;
+  }
+  .header__link {
+    margin: 0 35px;
   }
 }

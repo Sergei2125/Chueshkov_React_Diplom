@@ -1,6 +1,4 @@
 import React from "react";
-import { useState } from "react";
-import { useCallback } from "react";
 
 import UserPageLayout from "../components/UserPageLayout";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,7 +13,7 @@ const UserPageContainers = (props) => {
 
   useEffect(() => {
     dispatch(GET_ORDER_REQUEST());
-  }, []);
+  }, [dispatch]);
 
   return (
     <UserPageLayout isLoading={isLoading} userInfo={userInfo} orders={orders} />

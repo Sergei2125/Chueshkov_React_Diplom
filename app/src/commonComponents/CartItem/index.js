@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Button } from "@material-ui/core";
+import { Button, Box } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
@@ -8,7 +8,7 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
 import * as styles from "./styles.module.scss";
 
-const PokemonCardinCart = ({
+const CartItem = ({
   item,
   handleRemoveItemFromCart,
   handleAddQuantityItem,
@@ -25,21 +25,35 @@ const PokemonCardinCart = ({
         <Typography className={styles.card__name}>
           {item.name} id: {item.id}
         </Typography>
-        <Typography className={styles.card__counter}>
-          <Button variant="outlined" onClick={handleAddQuantityItem}>
+        <Typography className={styles.card__name}>
+          Price: {item.price}
+        </Typography>
+        <Box className={styles.card__counter}>
+          <Button
+            variant="contained"
+            onClick={handleAddQuantityItem}
+            className={styles.card__btn}
+            color="primary"
+          >
             +
           </Button>
           <Typography className={styles.card__quantity}>
             {item.quantity}
           </Typography>
-          <Button variant="outlined" onClick={handleDecrementQuantityItem}>
+          <Button
+            className={styles.card__btn}
+            variant="contained"
+            color="primary"
+            onClick={handleDecrementQuantityItem}
+          >
             -
           </Button>
-        </Typography>
-        <Typography>price: {item.price}</Typography>
+        </Box>
+
         <Button
           className={styles.card__buttondelete}
           onClick={handleRemoveItemFromCart}
+          color="secondary"
         >
           <DeleteForeverIcon className={styles.card__delete} />
         </Button>
@@ -48,11 +62,11 @@ const PokemonCardinCart = ({
   );
 };
 
-PokemonCardinCart.propTypes = {
+CartItem.propTypes = {
   item: PropTypes.object.isRequired,
   handleAddQuantityItem: PropTypes.func.isRequired,
   handleDecrementQuantityItem: PropTypes.func.isRequired,
   handleRemoveItemFromCart: PropTypes.func.isRequired,
 };
 
-export default PokemonCardinCart;
+export default CartItem;

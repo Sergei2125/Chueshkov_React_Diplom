@@ -17,32 +17,44 @@ const CartPageContainers = (props) => {
 
   useEffect(() => {
     dispatch(CART_STATE_REQUEST());
-  }, []);
+  }, [dispatch]);
 
-  const handleRemoveItemFromCart = useCallback((item) => {
-    dispatch(REMOVE_ITEM_REQUEST(item.id));
-  }, []);
+  const handleRemoveItemFromCart = useCallback(
+    (item) => {
+      dispatch(REMOVE_ITEM_REQUEST(item.id));
+    },
+    [dispatch]
+  );
 
-  const handleAddQuantityItem = useCallback((item) => {
-    const result = { id: item.id, quantity: item.quantity + 1 };
-    dispatch(CHANGE_QUANTITY_ITEM_REQUEST(result));
-  }, []);
+  const handleAddQuantityItem = useCallback(
+    (item) => {
+      const result = { id: item.id, quantity: item.quantity + 1 };
+      dispatch(CHANGE_QUANTITY_ITEM_REQUEST(result));
+    },
+    [dispatch]
+  );
 
-  const handleDecrementQuantityItem = useCallback((item) => {
-    if (item.quantity > 1) {
-      item.quantity = item.quantity - 1;
-    }
-    const result = {
-      id: item.id,
-      quantity: item.quantity,
-    };
-    dispatch(CHANGE_QUANTITY_ITEM_REQUEST(result));
-  }, []);
+  const handleDecrementQuantityItem = useCallback(
+    (item) => {
+      if (item.quantity > 1) {
+        item.quantity = item.quantity - 1;
+      }
+      const result = {
+        id: item.id,
+        quantity: item.quantity,
+      };
+      dispatch(CHANGE_QUANTITY_ITEM_REQUEST(result));
+    },
+    [dispatch]
+  );
 
-  const handleMakeAnOrder = useCallback((cartData) => {
-    const { totalPrice, customerId, itemsList } = cartData;
-    dispatch(MAKE_ORDER_REQUEST({ totalPrice, customerId, itemsList }));
-  }, []);
+  const handleMakeAnOrder = useCallback(
+    (cartData) => {
+      const { totalPrice, customerId, itemsList } = cartData;
+      dispatch(MAKE_ORDER_REQUEST({ totalPrice, customerId, itemsList }));
+    },
+    [dispatch]
+  );
 
   return (
     <CartPageLayout
