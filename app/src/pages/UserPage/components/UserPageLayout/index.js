@@ -9,10 +9,10 @@ import styles from "./styles.module.scss";
 
 const UserPageLayout = ({ userInfo, isLoading, orders }) => {
   return (
-    <div className={styles.pageWrapper}>
-      <h2>UserInfo :</h2>
+    <div className={styles.userPage}>
+      <h2 className={styles.userPage__title}>User Information :</h2>
       <UserInfo userInfo={userInfo} />
-      <h2>Orders :</h2>
+      <h2 className={styles.userPage__title}>User orders :</h2>
       <div>
         {isLoading ? (
           <CircularProgress />

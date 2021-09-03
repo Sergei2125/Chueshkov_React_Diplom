@@ -39,7 +39,9 @@
     transition: ease 0.5s;
   }
 }
-
+.menuMobile {
+  display: none;
+}
 @media (max-width: 970px) {
   .header__btnLogout {
     margin: 0 !important;
@@ -52,7 +54,20 @@
   .header__btnLogout {
     margin: 0 30px;
   }
-  .header__link {
-    margin: 0 35px;
+  .menu {
+    display: none;
+  }
+  .menuMobile {
+    display: flex;
+    justify-content: space-around;
+  }
+  .linkMobile {
+    text-decoration: none;
+  }
+  .header__button {
+    background-color: rgb(48, 152, 250) !important;
+  }
+  .iconMenu {
+    color: #fff !important;
   }
 }

@@ -10,6 +10,8 @@ import { withStyles } from "@material-ui/core/styles";
 
 import { Button, Box } from "@material-ui/core";
 
+import LongMenu from "../../../LongMenu";
+
 import styles from "./styles.module.scss";
 
 const HeaderLayout = ({ handleLogout, numberOfOrder, handleGoToCart }) => {
@@ -28,26 +30,33 @@ const HeaderLayout = ({ handleLogout, numberOfOrder, handleGoToCart }) => {
     <Box>
       {isAuth ? (
         <Box className={styles.header}>
-          {Object.entries(REGUSER).map(([routeName, path]) => (
-            <Link to={path} key={routeName} className={styles.header__link}>
-              <Button className={styles.header__button}>
-                {routeName}
-                {routeName === "CART" && (
-                  <StyledBadge
-                    badgeContent={numberOfOrder}
-                    color="secondary"
-                    className={styles.header__cart}
-                  >
-                    <ShoppingCartIcon />
-                  </StyledBadge>
-                )}
-              </Button>
-            </Link>
-          ))}
-
-          <Button onClick={handleLogout} className={styles.header__btnLogout}>
-            LOGOUT
-          </Button>
+          <Box className={styles.menu}>
+            {Object.entries(REGUSER).map(([routeName, path]) => (
+              <Link to={path} key={routeName} className={styles.header__link}>
+                <Button className={styles.header__button}>
+                  {routeName}
+                  {routeName === "CART" && (
+                    <StyledBadge
+                      badgeContent={numberOfOrder}
+                      color="secondary"
+                      className={styles.header__cart}
+                    >
+                      <ShoppingCartIcon />
+                    </StyledBadge>
+                  )}
+                </Button>
+              </Link>
+            ))}
+            <Button onClick={handleLogout} className={styles.header__btnLogout}>
+              LOGOUT
+            </Button>
+          </Box>
+          <Box className={styles.menuMobile}>
+            {LongMenu()}{" "}
+            <Button onClick={handleLogout} className={styles.header__btnLogout}>
+              LOGOUT
+            </Button>
+          </Box>
         </Box>
       ) : (
         <Box className={styles.header}>

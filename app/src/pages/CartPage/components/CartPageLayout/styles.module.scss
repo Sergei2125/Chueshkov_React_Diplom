@@ -26,6 +26,6 @@
 }
 @media (max-width: 840px) {
   .pageWrapper {
-    width: 600px;
+    max-width: calc(100% - 30px);
   }
 }
