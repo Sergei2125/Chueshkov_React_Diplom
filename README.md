@@ -1,4 +1,4 @@
-# Pokemons store application
+# Pokemons store 
 
 heroku: https://polite-loon-37258.herokuapp.com/
 
@@ -14,6 +14,6 @@ heroku: https://polite-loon-37258.herokuapp.com/
 
 ***
 
-### команды запуска 
-+ gulp - режим разработки
+### launch commands
++ npm start
 
